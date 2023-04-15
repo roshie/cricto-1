@@ -1,0 +1,9 @@
+.btn {
+    @apply font-normal py-2 px-4;
+  }
+  .btn-blue {
+    @apply bg-[#1d255c] text-white;
+  }
+  .btn-blue:hover {
+    @apply bg-[#293063];
+  }
