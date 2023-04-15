@@ -1,10 +1,12 @@
+import React from "react";
+import Home from "./components/Home/Home";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
 
 function App() {
   return (
     <div className="App">
-      <div className="container" >
-      <h1 className="flex justify-center align-middle text-[#ff0000] text-6xl">Hello</h1>
-      </div>
+      <Home/>
     </div>
   );
 }
