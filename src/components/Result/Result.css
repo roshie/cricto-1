@@ -1,15 +1,17 @@
 .project_container {
     display: grid;
     grid-template-columns: repeat(3, 2fr);
-    gap: 2.5rem;
+    gap: 1.5rem;
   }
   
   .project_item {
     background: var(--color-bg-variant);
-    padding: 1.3rem;
+    padding: 1rem;
     border-radius: 1rem;
     border: 1px solid transparent;
     transition: var(--transition);
+    height: 25rem;
+    width: 20rem;
   }
   
   .project_item:hover {
@@ -20,18 +22,20 @@
   .project_item-image {
     border-radius: 0.5rem;
     overflow: hidden;
-    height: 75%;
+    height: 40%;
+    width: 60%;
   }
 
   .project_title {
     font-size: 1rem;
-    padding-top: 5%;
-    padding-bottom: 5%;
+
+    /* /* padding-top: 1rem; */
+    padding-top: 1rem; 
   }
 
   .project_subtitle {
     font-size: 0.80rem;
-    margin-bottom: 5%;
+    /* margin-bottom: 1rem; */
   }
   
   .project_item h3 {
@@ -48,7 +52,7 @@
   @media screen and (max-width: 1024px){
    .project_container {
      grid-template-columns: 1fr 1fr;
-     gap: 1.2rem;
+     gap: 1rem;
    }
   }
   
