@@ -5,33 +5,49 @@ export default function Upload() {
     const [selectedFile, setSelectedFile] = useState();
 	const [isFilePicked, setIsFilePicked] = useState(false);
     const [isSelected, setIsSelected] = useState(false);
+    const [file, setFile] = useState(null);
 
 	const changeHandler = (event) => {
 		setSelectedFile(event.target.files[0]);
 		setIsSelected(true);
 	};
 
-	const handleSubmission = () => {
-		const formData = new FormData();
+	const handleFileChange = (event) => {
+        const selectedFile = event.target.files[0];
+        setFile(selectedFile);
+      };
+    
+      const handleFormSubmit = async () => {
+        console.log('Submit');
+        try {
+          const formData = new FormData();
+          formData.append('video', file);
+    
+          const response = await fetch('https://3f0e-2409-4072-d-c198-f5c5-676b-c55e-5054.ngrok-free.app/api/upload-video',
+          {
+            method: 'POST',
+            body: formData,
+            mode: "cors",
 
-		formData.append('File', selectedFile);
-
-		fetch(
-			'https://freeimage.host/api/1/upload?key=<YOUR_API_KEY>',
-			{
-				method: 'POST',
-				body: formData,
-			}
-		)
-			.then((response) => response.json())
-			.then((result) => {
-				console.log('Success:', result);
-			})
-			.catch((error) => {
-				console.error('Error:', error);
-			});
-	
-	};
+            headers: {
+                "Content-Type": "application/json",
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+              },
+          });
+    
+          if (response.ok) {
+            
+            console.log('File uploaded successfully');
+          } else {
+            
+            console.error('File upload failed');
+          }
+        } catch (error) {
+          
+          console.error('File upload failed', error);
+        }
+      };
+    
 
 	return(
         <div>
@@ -57,7 +73,7 @@ export default function Upload() {
 				<p>Select a file to show details</p>
 			)}
 			<div>
-				<button className="btn btn-blue" onClick={handleSubmission}>Submit</button>
+				<button type="submit" className="btn btn-blue" onClick={handleFormSubmit}>Submit</button>
 			</div>
             </div>
 		</div>
