@@ -3,7 +3,6 @@ import "./Upload.css";
 
 export default function Upload() {
     const [selectedFile, setSelectedFile] = useState();
-	const [isFilePicked, setIsFilePicked] = useState(false);
     const [isSelected, setIsSelected] = useState(false);
     const [file, setFile] = useState(null);
 

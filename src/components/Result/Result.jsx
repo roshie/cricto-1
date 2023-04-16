@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "./Result.css";
+import Card from "./Card";
 
 export default function Result() {
-  const [data, setData] = useState(null);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -14,6 +15,7 @@ export default function Result() {
           throw new Error("Failed to fetch video");
         }
         const jsonData = await response.json();
+        console.log(jsonData);
         setData(jsonData);
       } catch (error) {
         console.error("error fetching video");
@@ -22,6 +24,10 @@ export default function Result() {
     fetchData();
   }, []);
 
+//   if (data.length === 0) {
+//     return <div>Loading data...</div>;
+//   }
+
   return (
     <div className="container">
       <div>
@@ -29,39 +35,12 @@ export default function Result() {
           Analyse Results
         </h1>
       </div>
-      return (
-      <div className="m-[5rem] project_container">
-        <div className="project_container ">
-          <article key="1" className="project_item">
-            <img
-              className="project_item-image ml-[3.5rem]"
-              src={data.thumbnail_url}
-            />
-            <p className="project_title flex justify-center">
-              Length: {data.ball_type}
-            </p>
-            <p className="project_title flex justify-center">
-              Speed: {data.ball_speed}
-            </p>
-            <p className="project_title flex justify-center">
-              Shot Played: {data.shot_played}
-            </p>
-            <p className="project_title flex justify-center">
-              Accuracy: {data.shot_selection_accuracy}
-            </p>
-            <p className="project_title flex justify-center">
-              Ideal Shot: {data.other_recommended_shots}
-            </p>
-            <iframe
-              width="100"
-              height="100"
-              src={data.url}
-              allowfullscreen
-            ></iframe>
-          </article>
-        </div>
-      </div>
-      ) ;
+      
+      
+        {data.map((card) => {
+                  return <Card {...card} />;
+                })}
+      
     </div>
   );
 }
