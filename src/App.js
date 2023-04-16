@@ -1,6 +1,7 @@
 import React from "react";
 import Home from "./components/Home/Home";
 import Upload from "./components/Upload/Upload";
+import Result from "./components/Result/Result";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -18,6 +19,10 @@ const router = createBrowserRouter([
   {
     path: "/upload",
     element: <Upload/>,
+  },
+  {
+    path: "/result",
+    element: <Result/>,
   }
 ]);
 
