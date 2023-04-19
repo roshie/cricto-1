@@ -1,22 +1,64 @@
 import React, { useEffect, useState } from "react";
+import { BACKEND_URL } from "../../config";
 import "./Result.css";
 import Card from "./Card";
+import Loading from "../../assets/loader.gif";
+import Test from "../../assets/test.gif";
 
 export default function Result() {
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // const sampleData = {
+  //   analysis: {
+  //     percentage: 100,
+  //     statistics: { 0: 0, 50: 0, 100: 2 },
+  //   },
+  //   data: [
+  //     {
+  //       ball_type: "full",
+  //       recommended_shots: [
+  //         ["Straight Drive", "XS8swTgb3Hg"],
+  //         ["Cover Drive", "i_MbWx8BUx8"],
+  //         ["On Drive", "KDxJlW6cxRk"],
+  //         ["Leg Glance", "jTo14VFNCHk"],
+  //         ["Defence", "pzRORhkiaDk"],
+  //       ],
+  //       shot_played: "Drive",
+  //       shot_selection_accuracy: 100,
+  //       thumbnail_url: Test,
+  //       video_id: 1,
+  //     },
+  //     {
+  //       ball_type: "full",
+  //       recommended_shots: [
+  //         ["Straight Drive", "XS8swTgb3Hg"],
+  //         ["Cover Drive", "i_MbWx8BUx8"],
+  //         ["On Drive", "KDxJlW6cxRk"],
+  //         ["Leg Glance", "jTo14VFNCHk"],
+  //         ["Defence", "pzRORhkiaDk"],
+  //       ],
+  //       shot_played: "Drive",
+  //       shot_selection_accuracy: 100,
+  //       thumbnail_url: Test,
+  //       video_id: 2,
+  //     },
+  //   ],
+  // };
 
   useEffect(() => {
     const fetchData = async () => {
+      const formData = new FormData();
+      formData.append("session_id", localStorage.getItem("session_id"));
       try {
-        const response = await fetch(
-          "https://3f0e-2409-4072-d-c198-f5c5-676b-c55e-5054.ngrok-free.app/api/analyze-video"
-        );
-        if (!response.ok) {
-          throw new Error("Failed to fetch video");
-        }
+        const response = await fetch(`${BACKEND_URL}/api/analyze-video`, {
+          method: "POST",
+          body: formData,
+        });
         const jsonData = await response.json();
         console.log(jsonData);
         setData(jsonData);
+        setLoading(false);
       } catch (error) {
         console.error("error fetching video");
       }
@@ -24,31 +66,49 @@ export default function Result() {
     fetchData();
   }, []);
 
-//   if (data.length === 0) {
-//     return <div>Loading data...</div>;
-//   }
-
   return (
-    <div className="container">
-      <div>
-        <h1 className="project_Title font-bold flex justify-center">
-          Analyse Results
-        </h1>
-      </div>
-      
-      
-        {data.map((card) => {
-                  return <Card {...card} />;
-                })}
-      
+    <div className="flex justify-center flex-col">
+      {loading ? (
+        <>
+          <h1 className="project_Title font-bold text-center">
+            Please Wait while we are Analyzing Your Videos
+            <div class="lds-ring mx-2">
+              <div></div>
+              <div></div>
+              <div></div>
+              <div></div>
+            </div>
+          </h1>
+          <div className="flex justify-center">
+            <img src={Loading} alt="loading" />
+          </div>
+        </>
+      ) : (
+        <>
+          <div>
+            <h1 className="font-bold text-center text-4xl mt-[5rem]">
+              Analyzed Results...
+            </h1>
+          </div>
+          {/* <div className="grid grid-cols-2 my-3 mx-[5rem]">
+            <div>
+              <button className="btn btn-blue text-lg font-bold">
+                {"<"} Prev
+              </button>
+            </div>
+            <div className="flex justify-end">
+              <button className="btn btn-blue text-lg font-bold">
+                Next {">"}
+              </button>
+            </div>
+          </div> */}
+          <div>
+            {data.data.map((card) => {
+              return <Card {...card} />;
+            })}
+          </div>
+        </>
+      )}
     </div>
   );
 }
-
-// video_id: 1,
-//     thumbnail_url: "url",
-//     ball_type: "Full Length",
-//     ball_speed: "6 mps",
-//     shot_played: "On Drive",
-//     shot_selection_accuracy: "100%",
-//     other_recommended_shots: ["Cover Drive"],

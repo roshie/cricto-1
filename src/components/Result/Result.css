@@ -1,74 +1,89 @@
 .project_container {
-    display: grid;
-    grid-template-columns: repeat(3, 3fr);
-    /* gap: 1.5rem; */
-  }
-  
-  .project_item {
-    background: var(--color-bg-variant);
-    padding: 1rem;
-    border-radius: 1rem;
-    border: 1px solid transparent;
-    transition: var(--transition);
-    height: 25rem;
-    width: 20rem;
-  }
-  
-  .project_item:hover {
-    border-color: var(--color-primary-variant);
-    background: transparent;
-  }
-  
-  .project_item-image {
-    border-radius: 0.5rem;
-    overflow: hidden;
-    height: 40%;
-    width: 60%;
-  }
+  display: grid;
+  grid-template-columns: repeat(3, 3fr);
+  /* gap: 1.5rem; */
+}
 
-  .project_Title {
-    font-size: 2rem;
+.project_item {
+  background: var(--color-bg-variant);
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid transparent;
+  transition: var(--transition);
+  height: 25rem;
+  width: 20rem;
+}
 
-    /* /* padding-top: 1rem; */
-    padding-top: 1rem; 
-    padding-bottom: 3rem; 
+.project_item:hover {
+  border-color: var(--color-primary-variant);
+  background: transparent;
+}
 
-  }
+.project_item-image {
+  border-radius: 0.5rem;
+  overflow: hidden;
+  height: 40%;
+  width: 60%;
+}
 
-  .project_title {
-    font-size: 1rem;
+.card_item {
+  min-height: 25rem;
+  min-width: 50rem;
+}
 
-    /* /* padding-top: 1rem; */
-    padding-top: 1rem; 
-  }
+.project_Title {
+  font-size: 2rem;
 
-  .project_subtitle {
-    font-size: 0.80rem;
-    /* margin-bottom: 1rem; */
-  }
-  
-  .project_item h3 {
-    margin: 1.2rem 0 2rem;
-  }
-  
-  .project-item-cta {
-    display: flex;
+  /* /* padding-top: 1rem; */
+  padding-top: 1rem;
+  padding-bottom: 3rem;
+}
+
+.project_title {
+  font-size: 1rem;
+
+  /* /* padding-top: 1rem; */
+  padding-top: 1rem;
+}
+
+.project_subtitle {
+  font-size: 0.8rem;
+  /* margin-bottom: 1rem; */
+}
+
+.project_item h3 {
+  margin: 1.2rem 0 2rem;
+}
+
+.project-item-cta {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 0rem;
+  border-radius: 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+  .project_container {
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
-    margin-bottom: 0rem;
-    border-radius: 1rem;
   }
-  
-  @media screen and (max-width: 1024px){
-   .project_container {
-     grid-template-columns: 1fr 1fr;
-     gap: 1rem;
-   }
+}
+
+@media screen and (max-width: 600px) {
+  .project_container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
   }
-  
-  @media screen and (max-width: 600px){
-    .project_container {
-      grid-template-columns: 1fr;
-      gap: 1rem;
-    }
-  }
-  
+}
+
+.values {
+  background-color: rgb(54, 54, 118);
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.custom-card {
+  background-color: rgb(21, 21, 44);
+  padding: 3rem;
+  border-radius: 20px;
+}
