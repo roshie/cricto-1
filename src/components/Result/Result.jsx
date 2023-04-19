@@ -103,8 +103,8 @@ export default function Result() {
             </div>
           </div> */}
           <div>
-            {data.data.map((card) => {
-              return <Card {...card} />;
+            {data.data.map((card, i) => {
+              return <Card {...card} id={i} />;
             })}
           </div>
         </>

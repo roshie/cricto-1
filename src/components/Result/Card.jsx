@@ -24,7 +24,7 @@ export default function Card(props) {
           <img width={450} src={props.thumbnail_url} alt="gif" />
         </div>
         <div className="col mx-3">
-          <h3 className="font-bold text-4xl my-5">Ball {props.video_id + 1}</h3>
+          <h3 className="font-bold text-4xl my-5">Ball {props.id + 1}</h3>
           <div className="grid grid-cols-1 md:grid-cols-2">
             <div className="col-6 m-3">
               <b>Ball Length:</b>

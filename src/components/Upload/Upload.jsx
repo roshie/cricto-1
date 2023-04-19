@@ -44,13 +44,13 @@ export default function Upload() {
   return (
     <div>
       <div>
-        <h1 className="flex justify-center content-center mt-[4rem] font-bold text-3xl ">
+        <h1 className="flex justify-center content-center mt-[4rem] font-bold text-3xl">
           Upload files
         </h1>
       </div>
-      <div className="flex flex-col justify-center content-center mt-[4rem] bg-gray-900 p-4 w-full h-[20rem]">
+      <div className="flex flex-col justify-center content-center m-[4rem] bg-gray-900 p-4">
         <div className="flex flex-col items-center h-full border-2 justify-center gap-6">
-          <p className="text-xl font-bold">
+          <p className="text-xl font-bold mt-5">
             Select the Practice Session Videos
           </p>
           <input
@@ -113,24 +113,26 @@ export default function Upload() {
               </p>
             </>
           )}
-          <div>
-            <button
-              type="button"
-              disabled={loading}
-              className="btn btn-blue"
-              onClick={handleFormSubmit}
-            >
-              {loading ? (
-                <div class="lds-ring">
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                  <div></div>
-                </div>
-              ) : (
-                "Analyze Now!"
-              )}
-            </button>
+          <div className="my-4">
+            {selectedFiles.length > 0 && (
+              <button
+                type="button"
+                disabled={loading}
+                className="btn btn-blue"
+                onClick={handleFormSubmit}
+              >
+                {loading ? (
+                  <div class="lds-ring">
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                    <div></div>
+                  </div>
+                ) : (
+                  "Analyze Now!"
+                )}
+              </button>
+            )}
           </div>
         </div>
       </div>
