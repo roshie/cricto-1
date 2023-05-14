@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { BACKEND_URL } from "../../config";
 import "./Result.css";
 import Card from "./Card";
 import Loading from "../../assets/loader.gif";
-import Test from "../../assets/test.gif";
 
 export default function Result() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate();
 
   // const sampleData = {
   //   analysis: {
@@ -70,17 +71,19 @@ export default function Result() {
     <div className="flex justify-center flex-col">
       {loading ? (
         <>
+          <div className="mt-[5rem] mb-3 flex justify-center">
+            <img src={Loading} alt="loading" />
+          </div>
           <h1 className="project_Title font-bold text-center">
             Please Wait while we are Analyzing Your Videos
+          </h1>
+          <div className="flex justify-center">
             <div class="lds-ring mx-2">
               <div></div>
               <div></div>
               <div></div>
               <div></div>
             </div>
-          </h1>
-          <div className="flex justify-center">
-            <img src={Loading} alt="loading" />
           </div>
         </>
       ) : (
@@ -106,6 +109,17 @@ export default function Result() {
             {data.data.map((card, i) => {
               return <Card {...card} id={i} />;
             })}
+          </div>
+          <div className="text-center">
+            <button
+              className="btn btn-blue my-4"
+              onClick={() => {
+                navigate("/");
+              }}
+            >
+              {" "}
+              Go to Home
+            </button>
           </div>
         </>
       )}
